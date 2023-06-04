@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=cli-mg
+Comment=Fun command line minigames 
+Exec=/usr/local/bin/cli-mg
+Icon=/usr/local/share/cli-mg/icon.ico
+Terminal=true
+Type=Application
+Categories=Game;Application;
