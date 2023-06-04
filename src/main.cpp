@@ -144,8 +144,7 @@ int main(int argc, char *argv[]) {
             system(pkgstring.c_str());
             break;
         case HASH_S16("about"):
-            cout << "bpkg v" << version << " by SvGaming\n"
-            << "Git repository: https://fossfor.serveo.net/SvGaming/bpkg\n";
+            cout << "bpkg v" << version << " by SvGaming\n";
             break;
     }
     
