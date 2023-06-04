@@ -1,6 +1,0 @@
-#ifndef _ICON_RC
-#define _ICON_RC
-
-MAINICON ICON "icon.ico"
-
-#endif
