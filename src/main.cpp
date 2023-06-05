@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
-#include <ostream>
+#include <unistd.h>
 #include "statichash.h"
 #include "misclib.hpp"
 
@@ -9,7 +9,7 @@ using std::cout;
 using std::string;
 using misc::printc;
 
-string version = "0.1.0";
+string version = "0.1.1";
 
 int pkgcheck(string pkgname) {
     // package availability check
@@ -90,20 +90,16 @@ int main(int argc, char *argv[]) {
                     return 1;
                     break;
                 case 1:
-                    pkgstring = "pacman -S " + string(argv[2]);
-                    system(pkgstring.c_str());
+                    execlp("pacman", "pacman", "-S", argv[2], NULL);
                     break;
                 case 2:
-                    pkgstring = "pacman.arch -S " + string(argv[2]);
-                    system(pkgstring.c_str());
+                    execlp("pacman.arch", "pacman.arch", "-S", argv[2], NULL);
                     break;
                 case 3:
-                    pkgstring = "apt.ubuntu install " + string(argv[2]);
-                    system(pkgstring.c_str());
+                    execlp("apt.ubuntu", "apt.ubuntu", "install", argv[2], NULL);
                     break;
                 case 4:
-                    pkgstring = "dnf.fedora install " + string(argv[2]);
-                    system(pkgstring.c_str());
+                    execlp("dnf.fedora", "dnf.fedora", "install", argv[2], NULL);
                     break;
                 default:
                     printc("ERROR: Package availability check returned an invalid value.\n", 'r');
