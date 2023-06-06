@@ -6,13 +6,9 @@ stages:         # List of stages for jobs, and their order of execution
 
 build:
   stage: build
-  # instead of calling g++ directly you can also use some build toolkit like make
-  # install the necessary build tools when needed
-  # before_script:
-  #  
   script:
-    - apt update && apt -y install make autoconf
-    - make              # No need for make for now
+    - apt update && apt -y install make autoconf   # Install make (not sure if needed)
+    - make      # Runs make compile (default target)       
   artifacts:
     paths:
       - bpkg                             # Upload the binary!
@@ -20,6 +16,6 @@ build:
 sast:
   stage: test
 include:
-- template: Security/SAST.gitlab-ci.yml
-- template: Security/Secret-Detection.gitlab-ci.yml
+- template: Security/SAST.gitlab-ci.yml    # Code security scanning
+- template: Security/Secret-Detection.gitlab-ci.yml     # Secret detection
 
