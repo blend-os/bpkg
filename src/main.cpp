@@ -9,7 +9,7 @@ using std::cout;
 using std::string;
 using misc::printc;
 
-string version = "0.1.1";
+string version = "0.1.2";
 
 int pkgcheck(string pkgname) {
     // package availability check
@@ -132,11 +132,11 @@ int main(int argc, char *argv[]) {
             system(pkgstring.c_str());
 
             cout << "apt search results:\n";
-            pkgstring = "apt search " + string(argv[2]);
+            pkgstring = "apt.ubuntu search " + string(argv[2]);
             system(pkgstring.c_str());
 
             cout << "dnf search results:\n";
-            pkgstring = "dnf search " + string(argv[2]);
+            pkgstring = "dnf.fedora search " + string(argv[2]);
             system(pkgstring.c_str());
             break;
         case HASH_S16("about"):
