@@ -1,0 +1,21 @@
+image: python:latest
+
+stages:         # List of stages for jobs, and their order of execution
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - pip install pyinstaller   # Install make (not sure if needed)
+    - /usr/local/bin/pyinstaller --noconfirm --onefile --console --name "bpkg"  "bpkg.py"      # Runs compile (default target)       
+  artifacts:
+    paths:
+      - bpkg                             # Upload the binary!
+
+sast:
+  stage: test
+include:
+- template: Security/SAST.gitlab-ci.yml    # Code security scanning
+- template: Security/Secret-Detection.gitlab-ci.yml     # Secret detection
+
