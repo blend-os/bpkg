@@ -7,7 +7,7 @@ stages:         # List of stages for jobs, and their order of execution
 build:
   stage: build
   script:
-    - pip install pyinstaller   # Install make (not sure if needed)
+    - python3 -m pip install pyinstaller   # Install make (not sure if needed)
     - /usr/local/bin/pyinstaller --noconfirm --onefile --console --name "bpkg"  "bpkg.py"      # Runs compile (default target)       
   artifacts:
     paths:
