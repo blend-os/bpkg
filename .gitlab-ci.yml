@@ -11,7 +11,7 @@ build:
     - /usr/local/bin/pyinstaller --noconfirm --onefile --console --name "bpkg"  "bpkg.py"      # Runs compile (default target)       
   artifacts:
     paths:
-      - bpkg                             # Upload the binary!
+      - dist/bpkg                             # Upload the binary!
 
 sast:
   stage: test
