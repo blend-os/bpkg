@@ -8,7 +8,7 @@ import yaml
 import subprocess
 from io import StringIO
 
-version = "0.2.0"
+version = "0.2.0pre"
 
 def pkginstall():
     print("install placeholder")
@@ -42,7 +42,7 @@ def main():
     if len(sys.argv) < 2:
         print("\033[1m\033[31m>> e: \033[39minsufficient arguments\033[0m")
         usage()
-        exit(1)
+        sys.exit(1)
     
     if sys.argv[1] == "update":
         pkgupdate()
@@ -77,7 +77,7 @@ def main():
         if len(sys.argv) < 3:
             print("\033[1m\033[31m>> e: \033[39minsufficient arguments for this operation or invalid operation\033[0m")
             usage()
-            exit(1)
+            sys.exit(1)
         if sys.argv[1] == "install":
             pkginstall()
         elif sys.argv[1] == "remove":
@@ -85,7 +85,7 @@ def main():
         else:
             print("\033[1m\033[31m>> e: \033[39minvalid operation\033[0m")
             usage()
-            exit(1)
+            sys.exit(1)
     
 
 
