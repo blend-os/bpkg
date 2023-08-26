@@ -8,7 +8,7 @@ build:
   stage: build
   script:
     - python3 -m pip install pyinstaller pyyaml   # Install make (not sure if needed)
-    - /usr/local/bin/pyinstaller --noconfirm --onefile --console --name "bpkg"  "bpkg.py"      # Runs compile (default target)       
+    - /usr/local/bin/pyinstaller --noconfirm --onefile --console --name "bpkg"  "bpkg"      # Runs compile (default target)       
   artifacts:
     paths:
       - dist/bpkg                             # Upload the binary!
