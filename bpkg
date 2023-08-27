@@ -92,9 +92,9 @@ def overwrite_config():
             conf.write("\n    distro: ")
             conf.write("rocky-linux\n")
         else:
-            print("\033[1m\033[33m>> w: \033[39minvalid distro for container \"", container_names[i], "\"\033[0m")
+            print("\033[1m\033[33m>> w: \033[39minvalid distro for container \"" + container_names[i] + "\"\033[0m")
             print("\033[1m\033[33m>> w: \033[39mbpkg is most likely out of date or it hasn't been updated for a new container distro yet\033[0m")
-            print("\033[1m\033[33m>> w: \033[39mskipping distro \"", container_names[i], "\"\033[0m")
+            print("\033[1m\033[33m>> w: \033[39mskipping distro \"" + container_names[i] + "\"\033[0m")
 
     conf.write("\nupdate_flatpak: true\n")
     conf.close()
@@ -107,7 +107,39 @@ def pkgremove():
     print("remove placeholder")
 
 def pkgupdate():
-    print("update placeholder")
+    confdir = os.path.expanduser('~') + "/.config/"
+    confloc = confdir + "bpkg.yaml"
+
+    conf = open(confloc, "r")
+    yamlconf = yaml.safe_load(conf)
+
+    for i in range(len(yamlconf["containers"])):
+        if yamlconf["containers"][i]["distro"] == "arch" or yamlconf["containers"][i]["distro"] == "crystal-linux":
+            print("\033[1m\033[36m>> i: \033[39mupdating container \"" + yamlconf["containers"][i]["name"] + "\"\033[0m")
+            subprocess.run(["sudo", "pacman." + yamlconf["containers"][i]["name"], "-Syu", "--noconfirm"])
+
+        elif (yamlconf["containers"][i]["distro"] == "ubuntu-22.04" or yamlconf["containers"][i]["distro"] == "ubuntu-23.04" or 
+            yamlconf["containers"][i]["distro"] == "debian" or yamlconf["containers"][i]["distro"] == "neurodebian-bookworm"
+            or yamlconf["containers"][i]["distro"] == "kali-linux"):
+            print("\033[1m\033[36m>> i: \033[39mupdating container \"" + yamlconf["containers"][i]["name"] + "\"\033[0m")
+            subprocess.run(["sudo", "apt." + yamlconf["containers"][i]["name"], "update"])
+            subprocess.run(["sudo", "apt." + yamlconf["containers"][i]["name"], "upgrade", "-y"])
+
+        elif (yamlconf["containers"][i]["distro"] == "fedora-38" or yamlconf["containers"][i]["distro"] == "almalinux-9" or
+            yamlconf["containers"][i]["distro"] == "rocky-linux"):
+            print("\033[1m\033[36m>> i: \033[39mupdating container \"" + yamlconf["containers"][i]["name"] + "\"\033[0m")
+            subprocess.run(["sudo", "dnf." + yamlconf["containers"][i]["name"], "update", "-y", "--refresh"])
+
+        else:
+            print("\033[1m\033[33m>> w: \033[39minvalid distro for container \"" + yamlconf["containers"][i]["name"] + "\"\033[0m")
+            print("\033[1m\033[33m>> w: \033[39mbpkg is most likely out of date or it hasn't been updated for a new container distro yet\033[0m")
+            print("\033[1m\033[33m>> w: \033[39mskipping distro \"", yamlconf["containers"][i]["name"], "\"\033[0m")
+        
+    if yamlconf["update_flatpak"] == True:
+        print("\033[1m\033[36m>> i: \033[39mupdating flatpak\033[0m")
+        subprocess.run(["flatpak", "update", "-y"])
+
+
 
 def pkgsearch():
     print("search placeholder")
@@ -124,12 +156,11 @@ def main():
     confloc = confdir + "bpkg.yaml"
 
     if os.path.exists(confloc):
-        conf = open(confloc, "r+")
+        pass
     else:
         print("\033[1m\033[36m>> i: \033[39mThe bpkg config file located at \"" + confloc + "\" seems to be missing. Generating config...\033[0m")
         overwrite_config()
-        print("\033[1m\033[36m>> i: \033[39mdone\033[0m")
-        conf = open(confloc, "r+")
+        print("\033[1m\033[36m>> i: \033[39mdone, your new config file is located at \"" + confloc + "\"\033[0m")
     if len(sys.argv) < 2:
         print("\033[1m\033[31m>> e: \033[39minsufficient arguments\033[0m")
         usage()
