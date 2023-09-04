@@ -111,7 +111,6 @@ def overwrite_config():
 
 
 def pkginstall(package):
-    print(package)
     confdir = os.path.expanduser('~') + "/.config/"
     confloc = confdir + "bpkg.yaml"
 
@@ -172,8 +171,67 @@ def pkginstall(package):
         
     print(c.bold + c.red + ">> e: " + c.white + "package \"" + package + "\" not found in your containers" + c.reset)
 
-def pkgremove():
-    print("remove placeholder")
+def pkgremove(package):
+    confdir = os.path.expanduser('~') + "/.config/"
+    confloc = confdir + "bpkg.yaml"
+
+    conf = open(confloc, "r")
+    yamlconf = yaml.safe_load(conf)
+
+    for i in range(len(yamlconf["containers"])):
+        if (
+            yamlconf["containers"][i]["distro"] == "arch" or 
+            yamlconf["containers"][i]["distro"] == "crystal-linux"
+        ):
+
+            print(c.bold + c.cyan + ">> i: " + c.white + "checking if package \"" + package + "\" in container \"" + yamlconf["containers"][i]["name"] + "\" is installed" + c.reset)
+            pkgcheck = subprocess.run(["sudo", "pacman." + yamlconf["containers"][i]["name"], "-Q", package], stdout = subprocess.DEVNULL, stderr = subprocess.DEVNULL)
+
+            if pkgcheck.returncode == 0:
+                print(c.bold + c.cyan + ">> i: " + c.white + "package \"" + package + "\" is installed in container \"" + yamlconf["containers"][i]["name"] + "\"" + c.reset)
+                pkgcheck = subprocess.run(["sudo", "pacman." + yamlconf["containers"][i]["name"], "-R", package])
+                return pkgcheck.returncode
+
+
+        elif (
+            yamlconf["containers"][i]["distro"] == "ubuntu-22.04" or 
+            yamlconf["containers"][i]["distro"] == "ubuntu-23.04" or 
+            yamlconf["containers"][i]["distro"] == "debian" or 
+            yamlconf["containers"][i]["distro"] == "neurodebian-bookworm" or
+            yamlconf["containers"][i]["distro"] == "kali-linux"
+            ):
+
+            print(c.bold + c.cyan + ">> i: " + c.white + "checking if package \"" + package + "\" in container \"" + yamlconf["containers"][i]["name"] + "\" is installed" + c.reset)
+            is_pkg_installed_out = subprocess.check_output(["sudo", "apt." + yamlconf["containers"][i]["name"], "list", "-qq", package, "--installed"])
+            is_pkg_installed_decoded = is_pkg_installed_out.decode("utf-8") 
+
+            if is_pkg_installed_decoded != "":
+                print(c.bold + c.cyan + ">> i: " + c.white + "package \"" + package + "\" is installed in container \"" + yamlconf["containers"][i]["name"] + "\"" + c.reset)
+                subprocess.run(["sudo", "apt." + yamlconf["containers"][i]["name"], "update"])
+                pkgcheck = subprocess.run(["sudo", "apt." + yamlconf["containers"][i]["name"], "remove", package])
+                return pkgcheck.returncode
+
+        elif (
+            yamlconf["containers"][i]["distro"] == "fedora-38" or 
+            yamlconf["containers"][i]["distro"] == "almalinux-9" or
+            yamlconf["containers"][i]["distro"] == "rocky-linux"
+            ):
+
+            print(c.bold + c.cyan + ">> i: " + c.white + "checking if package \"" + package + "\" in container \"" + yamlconf["containers"][i]["name"] + "\" is installed" + c.reset)
+            pkgcheck = subprocess.run(["sudo", "dnf." + yamlconf["containers"][i]["name"], "list", "installed", package], stdout = subprocess.DEVNULL, stderr = subprocess.DEVNULL)
+
+            if pkgcheck.returncode == 0:
+                print(c.bold + c.cyan + ">> i: " + c.white + "package \"" + package + "\" is installed in container \"" + yamlconf["containers"][i]["name"] + "\"" + c.reset)
+                pkgcheck = subprocess.run(["sudo", "dnf." + yamlconf["containers"][i]["name"], "remove", package])
+                return pkgcheck.returncode
+
+        else:
+
+            print(c.bold + c.yellow + ">> w: " + c.white + "invalid distro for container \"" + yamlconf["containers"][i]["name"] + "\"" + c.reset)
+            print(c.bold + c.yellow + ">> w: " + c.white + "bpkg is most likely out of date or it hasn't been updated for a new container distro yet" + c.reset)
+            print(c.bold + c.yellow + ">> w: " + c.white + "skipping distro \"" + yamlconf["containers"][i]["name"] + "\"" + c.reset)
+        
+    print(c.bold + c.red + ">> e: " + c.white + "package \"" + package + "\" is not installed in any of your containers" + c.reset)
 
 def pkgupdate():
     confdir = os.path.expanduser('~') + "/.config/"
@@ -333,7 +391,9 @@ def main():
                 exitcode = pkginstall(sys.argv[i])
             sys.exit(exitcode)
         elif sys.argv[1] == "remove":
-            pkginstall()
+            for i in range(2, len(sys.argv)):
+                exitcode = pkgremove(sys.argv[i])
+            sys.exit(exitcode)
         else:
             print(c.bold + c.red + ">> e: " + c.white + "invalid operation" + c.reset)
             usage()
