@@ -1,4 +1,12 @@
-# bpkg
+<div align="center">
+
+<h1>bpkg</h1>
+<br>
+<a href="https://git.blendos.co/blendOS/bpkg/-/pipelines/latest"><img alt="Pipeline badge" src="https://git.blendos.co/blendos/bpkg/badges/main/pipeline.svg?ignore_skipped=true"></a>
+<a href="https://git.blendos.co/blendOS/bpkg/-/raw/main/bpkg?inline=false"><img alt="Download Badge" src="https://img.shields.io/badge/download-bpkg-%233eb787"></a>
+</br>
+</div>
+
 
 A community tool for BlendOS similar to [apx](https://github.com/Vanilla-OS/apx/) from the [VanillaOS](https://vanillaos.org/) project.  
 
