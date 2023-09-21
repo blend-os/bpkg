@@ -7,6 +7,7 @@
 </br>
 </div>
 
+<hr>
 
 A community tool for BlendOS similar to [apx](https://github.com/Vanilla-OS/apx/) from the [VanillaOS](https://vanillaos.org/) project.  
 
