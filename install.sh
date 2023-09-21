@@ -6,5 +6,5 @@ install -D -t $HOME/bin bpkg
 chmod u+x $HOME/bin/bpkg
 install container-distros.txt $HOME/bin
 echo "export PATH=$HOME/bin:$PATH" >> $HOME/.bashrc
-echo "Install complete!"
+echo "Install complete! Run exec bash or close and re-open your terminal to finish install!"
 
