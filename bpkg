@@ -369,7 +369,7 @@ def usage():
     print("Designed for blendOS\n")
     print("Contributors:")
     print("SvGaming - bpkg lead developer")
-    print("Asterisk - GitLab CI, README improvements, Blend docs bpkg documentation")
+    print("Asterisk - bpkg documentation")
 
 def main():
     if os.geteuid() == 0:
