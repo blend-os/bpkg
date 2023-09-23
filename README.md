@@ -3,20 +3,23 @@
 <h1>bpkg</h1>
 <br>
 <a href="https://git.blendos.co/blendOS/bpkg/-/pipelines/latest"><img alt="Pipeline badge" src="https://git.blendos.co/blendos/bpkg/badges/main/pipeline.svg?ignore_skipped=true"></a>
-<a href="https://git.blendos.co/blendOS/bpkg/-/archive/main/bpkg-main.tar.gz"><img alt="Download Badge" src="https://img.shields.io/badge/download-bpkg-%233eb787"></a>
+<a href="https://git.blendos.co/blendOS/bpkg/-/archive/main/bpkg-main.tar.gz"><img alt="Download Badge" src="https://img.shields.io/badge/bpkg-download-%233eb787"></a>
 <a href="https://docs.blendos.co/docs/utilities/bpkg"><img alt="bpkg docs" src="https://img.shields.io/badge/bpkg-documentation-%233eb787"></a>
 </br>
 </div>
 
 <hr>
 
-bpkg is a universal package manager for BlendOS, similar to (and different from) VanillaOS's apx tool.
+`bpkg` is a universal package manager for BlendOS.
 
-bpkg allows you to automatically search for a package through the repositories of your containers and automaticallly selects the best package according to your preference.  
+`bpkg` allows you to automatically search for a package through the repositories of your containers and automaticallly selects the best package according to your preference.  
 
 **NOTE:** This program is alpha software. You may experience issues while using it. 
 
-[BlendOS Docs bpkg page](https://docs.blendos.co/docs/utilities/bpkg)
+## Install
+
+Download `bpkg` [**here**](https://git.blendos.co/blendOS/bpkg/-/archive/main/bpkg-main.tar.gz).
+
 
 ## Usage
 
