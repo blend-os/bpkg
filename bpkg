@@ -143,7 +143,7 @@ def pkginstall(package):
 
             if pkgcheck.returncode == 0:
                 print(c.bold + c.cyan + ">> i: " + c.white + "package \"" + package + "\" found in container \"" + yamlconf["containers"][i]["name"] + "\"" + c.reset)
-                pkgcheck = subprocess.run(["sudo", "pacman." + yamlconf["containers"][i]["name"], "-S", package])
+                pkgcheck = subprocess.run(["sudo", "pacman." + yamlconf["containers"][i]["name"], "-S", "--needed", package])
                 return pkgcheck.returncode
 
 
