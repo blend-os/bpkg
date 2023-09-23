@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# bpkg - A blendOS tool similar to the VanillaOS "apx" tool
+# bpkg - A universal package manager for blendOS.
 
 import os
 import sys
