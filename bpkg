@@ -202,7 +202,7 @@ def pkgremove(package):
             pkgcheck = subprocess.run(["sudo", "pacman." + yamlconf["containers"][i]["name"], "-Q", package], stdout = subprocess.DEVNULL, stderr = subprocess.DEVNULL)
 
             if pkgcheck.returncode == 0:
-                print(c.bold + c.cyan + ">> i: " + c.white + "package \"" + package + "\" is installed in container \"" + yamlconf["containers"][i]["name"] + "\"" + c.reset)
+                print(c.bold + c.cyan + ">> i: " + c.white + "package \"" + package + "\" is installed in container \"" + yamlconf["containers"][i]["name"] + "\", removing" + c.reset)
                 pkgcheck = subprocess.run(["sudo", "pacman." + yamlconf["containers"][i]["name"], "-R", package])
                 return pkgcheck.returncode
 
@@ -220,7 +220,7 @@ def pkgremove(package):
             is_pkg_installed_decoded = is_pkg_installed_out.decode("utf-8") 
 
             if is_pkg_installed_decoded != "":
-                print(c.bold + c.cyan + ">> i: " + c.white + "package \"" + package + "\" is installed in container \"" + yamlconf["containers"][i]["name"] + "\"" + c.reset)
+                print(c.bold + c.cyan + ">> i: " + c.white + "package \"" + package + "\" is installed in container \"" + yamlconf["containers"][i]["name"] + "\", removing" + c.reset)
                 subprocess.run(["sudo", "apt." + yamlconf["containers"][i]["name"], "update"])
                 pkgcheck = subprocess.run(["sudo", "apt." + yamlconf["containers"][i]["name"], "remove", package])
                 return pkgcheck.returncode
@@ -235,7 +235,7 @@ def pkgremove(package):
             pkgcheck = subprocess.run(["sudo", "dnf." + yamlconf["containers"][i]["name"], "list", "installed", package], stdout = subprocess.DEVNULL, stderr = subprocess.DEVNULL)
 
             if pkgcheck.returncode == 0:
-                print(c.bold + c.cyan + ">> i: " + c.white + "package \"" + package + "\" is installed in container \"" + yamlconf["containers"][i]["name"] + "\"" + c.reset)
+                print(c.bold + c.cyan + ">> i: " + c.white + "package \"" + package + "\" is installed in container \"" + yamlconf["containers"][i]["name"] + "\", removing" + c.reset)
                 pkgcheck = subprocess.run(["sudo", "dnf." + yamlconf["containers"][i]["name"], "remove", package])
                 return pkgcheck.returncode
 
