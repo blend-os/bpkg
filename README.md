@@ -10,7 +10,7 @@
 
 <hr>
 
-`bpkg` is a universal package manager for BlendOS.
+`bpkg` is a universal package manager for BlendOS compatible with BlendOS v3 and v4.
 
 `bpkg` allows you to automatically search for a package through the repositories of your containers and automaticallly selects the best package according to your preference.  
 

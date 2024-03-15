@@ -91,7 +91,7 @@ def overwrite_config():
             conf.write(container_names[i])
             conf.write("\n    distro: ")
             conf.write("arch\n")
-        elif container_images[i] == "docker.io/library/ubuntu:22.04":
+        elif container_images[i] == "docker.io/library/ubuntu:22.04" or container_images[i] == "quay.io/toolbx/ubuntu-toolbox:22.04":
             conf.write("  - name: ")
             conf.write(container_names[i])
             conf.write("\n    distro: ")
@@ -105,7 +105,12 @@ def overwrite_config():
             conf.write("  - name: ")
             conf.write(container_names[i])
             conf.write("\n    distro: ")
-            conf.write("fedora-38\n")
+            conf.write("fedora-38\n")        
+        elif container_images[i] == "registry.fedoraproject.org/fedora-toolbox:39":
+            conf.write("  - name: ")
+            conf.write(container_names[i])
+            conf.write("\n    distro: ")
+            conf.write("fedora-39\n")
         elif container_images[i] == "quay.io/almalinux/almalinux:9":
             conf.write("  - name: ")
             conf.write(container_names[i])
@@ -116,7 +121,7 @@ def overwrite_config():
             conf.write(container_names[i])
             conf.write("\n    distro: ")
             conf.write("crystal-linux\n")
-        elif container_images[i] == "docker.io/library/debian:latest":
+        elif container_images[i] == "docker.io/library/debian:latest" or container_images[i] == "quay.io/toolbx-images/debian-toolbox:testing":
             conf.write("  - name: ")
             conf.write(container_names[i])
             conf.write("\n    distro: ")
@@ -136,6 +141,11 @@ def overwrite_config():
             conf.write(container_names[i])
             conf.write("\n    distro: ")
             conf.write("rocky-linux\n")
+        elif container_images[i] == "quay.io/toolbx-images/centos-toolbox:latest":
+            conf.write("  - name: ")
+            conf.write(container_names[i])
+            conf.write("\n    distro: ")
+            conf.write("centos\n")
         else:
             # if the distro is not recongnized by bpkg, skip it (you should update bpkg in that case)
             print(c.bold + c.yellow + ">> w: " + c.white + "invalid distro for container \"" + container_names[i] + "\"" + c.reset)
@@ -196,6 +206,8 @@ def pkginstall(package):
         elif (
             yamlconf["containers"][i]["distro"] == "fedora-38" or 
             yamlconf["containers"][i]["distro"] == "almalinux-9" or
+            yamlconf["containers"][i]["distro"] == "fedora-39" or
+            yamlconf["containers"][i]["distro"] == "centos" or
             yamlconf["containers"][i]["distro"] == "rocky-linux"
             ):
 
@@ -264,6 +276,8 @@ def pkgremove(package):
         elif (
             yamlconf["containers"][i]["distro"] == "fedora-38" or 
             yamlconf["containers"][i]["distro"] == "almalinux-9" or
+            yamlconf["containers"][i]["distro"] == "fedora-39" or
+            yamlconf["containers"][i]["distro"] == "centos" or
             yamlconf["containers"][i]["distro"] == "rocky-linux"
             ):
 
@@ -321,6 +335,8 @@ def pkgupdate():
         elif (
             yamlconf["containers"][i]["distro"] == "fedora-38" or 
             yamlconf["containers"][i]["distro"] == "almalinux-9" or
+            yamlconf["containers"][i]["distro"] == "fedora-39" or
+            yamlconf["containers"][i]["distro"] == "centos" or
             yamlconf["containers"][i]["distro"] == "rocky-linux"
             ):
 
@@ -384,6 +400,8 @@ def pkgsearch(package):
         elif (
             yamlconf["containers"][i]["distro"] == "fedora-38" or 
             yamlconf["containers"][i]["distro"] == "almalinux-9" or
+            yamlconf["containers"][i]["distro"] == "fedora-39" or
+            yamlconf["containers"][i]["distro"] == "centos" or
             yamlconf["containers"][i]["distro"] == "rocky-linux"
             ):
 
