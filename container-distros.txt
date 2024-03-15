@@ -1,4 +1,7 @@
 This is a text file containing container internal names and their respective Podman image URLs.
+This file is not required for bpkg to function, it is here for your convinience.
+
+V3:
 
 arch
 docker.io/library/archlinux:latest
@@ -29,3 +32,20 @@ docker.io/library/ubuntu:22.04
 
 ubuntu-23.04
 docker.io/library/ubuntu:23.04
+
+V4 testing release:
+
+arch-linux
+docker.io/library/archlinux
+
+debian
+quay.io/toolbx-images/debian-toolbox:testing
+
+fedora-39
+registry.fedoraproject.org/fedora-toolbox:39
+
+centos
+quay.io/toolbx-images/centos-toolbox:latest
+
+ubuntu-22.04
+quay.io/toolbx/ubuntu-toolbox:22.04
