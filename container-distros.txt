@@ -1,4 +1,4 @@
-This is a text file containing container intenal names and their respective Podman image URLs.
+This is a text file containing container internal names and their respective Podman image URLs.
 
 arch
 docker.io/library/archlinux:latest
