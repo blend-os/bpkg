@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # bpkg - A universal package manager for blendOS.
-# DO NOT TOUCH ANY LINE STARTING WITH --8<-- !
+# DO NOT TOUCH ANY LINE STARTING WITH --8<-- ! THESE DENOTE EMBEDDABLE SECTIONS!
 
 import os
 import sys
@@ -52,6 +52,7 @@ def list_containers():
         print(container_names[i] + " - " + container_images[i])
 # --8<-- [end:list]
 # automatically rewrite the config file, recommended to run this after adding/removing containers from the system
+# --8<-- [start:overwrite]
 def overwrite_config():
     # check container name
     container_names_out = subprocess.check_output(['podman', 'ps', '-a', '--no-trunc', '--size', '--format', '{{.Names}}'])
@@ -159,8 +160,9 @@ def overwrite_config():
 
     # close the file
     conf.close()
-
+# --8<-- [end:overwrite]
 # package installation
+# --8<-- [start:install]
 def pkginstall(package):
     # define .config folder location and full config file path
     confdir = os.path.expanduser('~') + "/.config/"
@@ -230,7 +232,9 @@ def pkginstall(package):
     
     # if the package isn't found in any containers, display an error
     print(c.bold + c.red + ">> e: " + c.white + "package \"" + package + "\" not found in your containers" + c.reset)
-
+# --8<-- [end:install]
+# Package removal
+# --8<-- [start:remove]
 def pkgremove(package):
     # define .config folder and full config file paths
     confdir = os.path.expanduser('~') + "/.config/"
@@ -300,8 +304,9 @@ def pkgremove(package):
     
     # display an error if the specified package isn't installed in any of the containers defined in the config
     print(c.bold + c.red + ">> e: " + c.white + "package \"" + package + "\" is not installed in any of your containers" + c.reset)
-
+# --8<-- [end:remove]
 # container repository index and package updating
+# --8<-- [start:update]
 def pkgupdate():
     # define .config and config file paths
     confdir = os.path.expanduser('~') + "/.config/"
@@ -356,8 +361,9 @@ def pkgupdate():
     if yamlconf["update_flatpak"] == True:
         print(c.bold + c.cyan + ">> i: " + c.white + "updating flatpak" + c.reset)
         subprocess.run(["flatpak", "update", "-y"])
-
+# --8<-- [end:update]
 # package searching in containers
+# --8<-- [start:search]
 def pkgsearch(package):
     # define .config folder and config file paths
     confdir = os.path.expanduser('~') + "/.config/"
@@ -423,8 +429,9 @@ def pkgsearch(package):
     # in that case print an error message
     if isfound == False:
         print(c.bold + c.red + ">> e: " + c.white + "package \"" + package + "\" not found in your containers" + c.reset)
-
+# --8<-- [end:search]
 # display the usage
+# --8<-- [start:help]
 def usage():
     # not much to say about this function, just prints some strings to the screen :)
     print("Usage:")
@@ -443,7 +450,7 @@ def usage():
     print("Contributors:")
     print("SvGaming - bpkg lead developer")
     print("Asterisk - bpkg documentation")
-
+# --8<-- [end:help]
 # the main function, the program starts executing here
 def main():
     # check if bpkg is running as a root user
