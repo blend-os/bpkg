@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # bpkg - A universal package manager for blendOS.
+# DO NOT TOUCH ANY LINE STARTING WITH --8<-- !
 
 import os
 import sys
@@ -29,6 +30,7 @@ def mkdir_p(newdir):
             raise
 
 # list all containers on the system, even ones that aren't in your bpkg config file
+# --8<-- [start:list]
 def list_containers():
     print(c.bold + c.cyan + ">> i: " + c.white + "please wait, loading container list" + c.reset)
 
@@ -48,7 +50,7 @@ def list_containers():
     # print them in a readable format recursively on the screen
     for i in range(len(container_names) - 1):
         print(container_names[i] + " - " + container_images[i])
-
+# --8<-- [end:list]
 # automatically rewrite the config file, recommended to run this after adding/removing containers from the system
 def overwrite_config():
     # check container name
