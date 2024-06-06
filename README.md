@@ -26,34 +26,34 @@ Download `bpkg` [**here**](https://git.blendos.co/blendOS/bpkg/-/archive/main/bp
 ### Install a package
 
 ```
-bpkg install <package> [-c <container>]
+bpkg install <package>
 ```
 
-This will search for the package in your installed distros and install it from the first package manager it finds by your order of preference, though you can specify a specific container.  
+This will search for the package in your installed distros and install it from the first package manager it finds by your order of preference. Use `user install <container> <package>` to install to a specific container.
 
 ### Remove a package
 
 ```
-bpkg remove <package> [-c <container>]
+bpkg remove <package>
 ```
 
-This will remove a package that you installed from a container of your choice or from the first container in your list the package is found in.  
+This will remove a package that you installed from the first container in your list the package is found in. Use `user remove <container> <package>` to remove from a specific container.
 
 ### Update packages
 
 ```
-bpkg update [-c <container>]
+bpkg update
 ```
 
-This will update all the packages in all your containers, or you can specify a specific one. If update_flatpak is set to true in the config, this will also update your flatpaks.  
+This will update all the packages in all your containers. If update_flatpak is set to true in the config, this will also update your flatpaks.  
 
 ### Package Search
 
 ```
-bpkg search <package> [-c <container>]
+bpkg search <package>
 ```
 
-You can search for a package in all of your containers, or specify a specific one.  
+You can search for a package in all of your containers.  
 
 ### Container list
 
