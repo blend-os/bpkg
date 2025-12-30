@@ -104,11 +104,16 @@ def overwrite_config():
             conf.write(container_names[i])
             conf.write("\n    distro: ")
             conf.write("ubuntu-23.04\n")
-        elif container_images[i] == "docker.io/library/fedora:38":
+        elif container_images[i] == "quay.io/toolbx/ubuntu-toolbox:24.04" or container_images[i] == "docker.io/library/ubuntu:24.04":
             conf.write("  - name: ")
             conf.write(container_names[i])
             conf.write("\n    distro: ")
-            conf.write("fedora-38\n")        
+            conf.write("ubuntu-24.04-lts\n")
+        elif container_images[i] == "registry.fedoraproject.org/fedora-toolbox:42":
+            conf.write("  - name: ")
+            conf.write(container_names[i])
+            conf.write("\n    distro: ")
+            conf.write("fedora-42\n")        
         elif container_images[i] == "registry.fedoraproject.org/fedora-toolbox:39":
             conf.write("  - name: ")
             conf.write(container_names[i])
