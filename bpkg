@@ -268,7 +268,7 @@ def pkgremove(package):
 
         elif (
             yamlconf["containers"][i]["distro"] == "ubuntu-22.04" or 
-            yamlconf["containers"][i]["distro"] == "ubuntu-23.04" or 
+            yamlconf["containers"][i]["distro"] == "ubuntu-24.04-lts" or 
             yamlconf["containers"][i]["distro"] == "debian" or 
             yamlconf["containers"][i]["distro"] == "neurodebian-bookworm" or
             yamlconf["containers"][i]["distro"] == "kali-linux"
@@ -285,7 +285,7 @@ def pkgremove(package):
                 return pkgcheck.returncode
 
         elif (
-            yamlconf["containers"][i]["distro"] == "fedora-38" or 
+            yamlconf["containers"][i]["distro"] == "fedora-42" or 
             yamlconf["containers"][i]["distro"] == "almalinux-9" or
             yamlconf["containers"][i]["distro"] == "fedora-39" or
             yamlconf["containers"][i]["distro"] == "centos" or
@@ -334,7 +334,7 @@ def pkgupdate():
 
         elif (
             yamlconf["containers"][i]["distro"] == "ubuntu-22.04" or 
-            yamlconf["containers"][i]["distro"] == "ubuntu-23.04" or 
+            yamlconf["containers"][i]["distro"] == "ubuntu-24.04-lts" or 
             yamlconf["containers"][i]["distro"] == "debian" or 
             yamlconf["containers"][i]["distro"] == "neurodebian-bookworm" or
             yamlconf["containers"][i]["distro"] == "kali-linux"
@@ -345,7 +345,7 @@ def pkgupdate():
             subprocess.run(["sudo", "apt." + yamlconf["containers"][i]["name"], "upgrade", "-y"])
 
         elif (
-            yamlconf["containers"][i]["distro"] == "fedora-38" or 
+            yamlconf["containers"][i]["distro"] == "fedora-42" or 
             yamlconf["containers"][i]["distro"] == "almalinux-9" or
             yamlconf["containers"][i]["distro"] == "fedora-39" or
             yamlconf["containers"][i]["distro"] == "centos" or
@@ -397,7 +397,7 @@ def pkgsearch(package):
 
 
         elif (
-            yamlconf["containers"][i]["distro"] == "ubuntu-22.04" or 
+            yamlconf["containers"][i]["distro"] == "ubuntu-24.04-lts" or 
             yamlconf["containers"][i]["distro"] == "ubuntu-23.04" or 
             yamlconf["containers"][i]["distro"] == "debian" or 
             yamlconf["containers"][i]["distro"] == "neurodebian-bookworm" or
@@ -411,7 +411,7 @@ def pkgsearch(package):
                 isfound = True
 
         elif (
-            yamlconf["containers"][i]["distro"] == "fedora-38" or 
+            yamlconf["containers"][i]["distro"] == "fedora-42" or 
             yamlconf["containers"][i]["distro"] == "almalinux-9" or
             yamlconf["containers"][i]["distro"] == "fedora-39" or
             yamlconf["containers"][i]["distro"] == "centos" or
