@@ -89,7 +89,7 @@ def overwrite_config():
 
     # recursively add all containers into the config file based on their name and image url
     for i in range(len(container_names) - 1):
-        if container_images[i] == "docker.io/library/archlinux:latest":
+        if container_images[i] == "quay.io/toolbx/arch-toolbox:latest":
             conf.write("  - name: ")
             conf.write(container_names[i])
             conf.write("\n    distro: ")
