@@ -94,7 +94,7 @@ def overwrite_config():
             conf.write(container_names[i])
             conf.write("\n    distro: ")
             conf.write("arch\n")
-        elif container_images[i] == "docker.io/library/ubuntu:22.04" or container_images[i] == "quay.io/toolbx/ubuntu-toolbox:22.04":
+        elif container_images[i] == "quay.io/toolbx/ubuntu-toolbox:22.04":
             conf.write("  - name: ")
             conf.write(container_names[i])
             conf.write("\n    distro: ")
@@ -104,7 +104,7 @@ def overwrite_config():
             conf.write(container_names[i])
             conf.write("\n    distro: ")
             conf.write("ubuntu-23.04\n")
-        elif container_images[i] == "quay.io/toolbx/ubuntu-toolbox:24.04" or container_images[i] == "docker.io/library/ubuntu:24.04":
+        elif container_images[i] == "quay.io/toolbx/ubuntu-toolbox:24.04":
             conf.write("  - name: ")
             conf.write(container_names[i])
             conf.write("\n    distro: ")
@@ -197,7 +197,7 @@ def pkginstall(package):
 
         elif (
             yamlconf["containers"][i]["distro"] == "ubuntu-22.04" or 
-            yamlconf["containers"][i]["distro"] == "ubuntu-23.04" or 
+            yamlconf["containers"][i]["distro"] == "ubuntu-24.04-lts" or 
             yamlconf["containers"][i]["distro"] == "debian" or 
             yamlconf["containers"][i]["distro"] == "neurodebian-bookworm" or
             yamlconf["containers"][i]["distro"] == "kali-linux"
@@ -213,7 +213,7 @@ def pkginstall(package):
                 return pkgcheck.returncode
 
         elif (
-            yamlconf["containers"][i]["distro"] == "fedora-38" or 
+            yamlconf["containers"][i]["distro"] == "fedora-42" or 
             yamlconf["containers"][i]["distro"] == "almalinux-9" or
             yamlconf["containers"][i]["distro"] == "fedora-39" or
             yamlconf["containers"][i]["distro"] == "centos" or
