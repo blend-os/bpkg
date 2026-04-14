@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 if [ "$EUID" -eq 0 ]; then
     echo -e "\033[01m\033[31m>> e: \033[39mplease run the installer as a non-root user\033[0m"
     exit 1
